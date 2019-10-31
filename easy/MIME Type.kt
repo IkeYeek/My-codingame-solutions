@@ -20,13 +20,7 @@ fun main(args : Array<String>) {
     for (i in 0 until Q) {
         val FNAME = input.nextLine() // One file name per line.
         var mt : String? = "UNKNOWN"
-        /**
-    if '.'  in fname:
-        ext = fname.split('.')[len(fname.split('.'))-1].lower()
-        if ext in ext_to_mt:
-            mt =  ext_to_mt[ext] 
-    print(mt)
-        */
+ 
         if(FNAME.contains('.') && FNAME.split('.').size > 1) {
             val EXT : String = FNAME.split('.')[FNAME.split('.').size-1].toLowerCase()
             if(extToMt.contains(EXT)) {
