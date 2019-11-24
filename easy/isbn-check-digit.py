@@ -24,8 +24,6 @@ for isbn in isbns:
                 summed += (10 - i) * k
                 remainder = summed % 11
                 check = (11 - remainder) 
-                if isbn == '0387372350':
-                    print(check, file=sys.stderr)
                 if check == 10:
                     check = 'X'
                 elif check == 11:
