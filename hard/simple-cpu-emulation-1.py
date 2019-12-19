@@ -57,20 +57,17 @@ for instruction in instructions:
         x = int(instruction[2])
         y = int(instruction[3])
         print("OR r%d, r%d" % (x, y), file=sys.stderr)
-        res = format(int(registers[x], 2) | int(registers[y], 2), 'b')
-        registers[x] = res
+        two_registers_operations(x, y, operator.or_)
     elif opcode == 5:
         x = int(instruction[2])
         y = int(instruction[3])
         print("AND r%d, r%d" % (x, y), file=sys.stderr)
-        res = format(int(registers[x], 2) & int(registers[y], 2), 'b')
-        registers[x] = res
+        two_registers_operations(x, y, operator.and_)
     elif opcode == 6:
         x = int(instruction[2])
         y = int(instruction[3])
         print("XOR r%d, r%d" % (x, y), file=sys.stderr)
-        res = format(int(registers[x], 2) ^ int(registers[y], 2), 'b')
-        registers[x] = res
+        two_registers_operations(x, y, operator.xor)
     elif opcode == 7:
         nn = format(int(instruction[2:], 16), 'b')
         r = int(instruction[1])
