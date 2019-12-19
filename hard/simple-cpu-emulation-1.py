@@ -15,8 +15,13 @@ instructions =  [ program[i:i+instruction_size] for i in range(0, buffer_size, i
 ignore = False
 print("Raw instructions :\n\t%s\ninstructions :" % (program,), file=sys.stderr)
 print(instructions, file=sys.stderr)
-
-def two_registers_operations(x, y, operator): #does registers[x] operator registers[y] and stores 8 first bits of the result in registers[x] 
+"""
+does registers[x] operator registers[y] and stores 8 first bits of the result in registers[x]. 
+if result is negative, we add it 256 and set the flag to true. 
+if result > 8 bit we set the flag to true
+if flag is true, registers[2] gets assigned 1
+"""
+def two_registers_operations(x, y, operator):  
     res = operator(int(registers[x], 2), int(registers[y], 2))
     flag = False
     if res < 0:
@@ -26,7 +31,8 @@ def two_registers_operations(x, y, operator): #does registers[x] operator regist
     res = format(res, 'b')
     if len(res) > 8:
         print("INTEGER OVERFLOW ON %s LIMIT IS %s" % (res, format(255, 'b')), file=sys.stderr)
-    registers[2] = '1' if len(res) > 8 or flag else '0'
+        flag = True
+    registers[2] = '1' if flag else '0'
     registers[x] = res[-8:]
     
 for instruction in instructions:
