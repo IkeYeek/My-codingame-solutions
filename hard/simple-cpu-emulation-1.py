@@ -23,7 +23,7 @@ if flag is true, registers[2] gets assigned 1
 """
 def two_registers_operations(x, y, operator):  
     res = operator(int(registers[x], 2), int(registers[y], 2))
-    flag = register[2] == 1
+    flag = registers[2] == 1
     if res < 0:
         res = 256 + res
         flag = True
@@ -101,5 +101,3 @@ for instruction in instructions:
     print("===registers values===", file=sys.stderr)
     print(registers, file=sys.stderr)
     print(list(map(lambda x: int(x, 2), registers)), file=sys.stderr, end="\n\n")
-
-        
